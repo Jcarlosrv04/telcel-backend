@@ -21,6 +21,7 @@ const csv=require('csvtojson')
 
 
 
+
 const PORT = process.env.PORT || 4000;
 
 
@@ -28,18 +29,24 @@ app.get('/telcel',(req,res)=>{
     csv()
 .fromFile(csvFilePath)
 .then((jsonObj)=>{
-    var radioArr = []
+    var traficoArr = []
+    var fechaArr = []
+    var numeroArr = []
+    var regionArr = []
     console.log(jsonObj)
 
 for(i = 0; i < jsonObj.length; i++){
     // console.log(jsonObj[i].TRAFICO)
-    var radiobases = jsonObj[i].RADIOBASE
-    radioArr.push(jsonObj[i].RADIOBASE)
-
+    // var radiobases = jsonObj[i].RADIOBASE
+    traficoArr.push(jsonObj[i].TRAFICO)
+    fechaArr.push(jsonObj[i].FECHA)
+    numeroArr.push(jsonObj[i].RADIOBASE)
+    regionArr.push(jsonObj[i].REGION)
+    var compresion = [traficoArr , fechaArr , numeroArr , regionArr]
     // console.log(jsonObj[i].TRAFICO)
 }
-console.log(radioArr)
-res.send(radioArr)
+console.log(traficoArr)
+res.send(compresion)
 
 })
 });
