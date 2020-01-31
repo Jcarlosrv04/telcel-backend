@@ -101,7 +101,7 @@ app.get('/telcel',(req,res)=>{
     var compresionTrafico= [trafico1, trafico2]
     var superCompresion = [jsonObj, compresionTrafico]
 
-    res.send(superCompresion)
+    res.send(jsonObj)
 
 })
 })
