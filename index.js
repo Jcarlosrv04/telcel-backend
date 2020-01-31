@@ -22,78 +22,89 @@ const csv=require('csvtojson')
 
 
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4001;
 
 
 app.get('/telcel',(req,res)=>{
     csv()
 .fromFile(csvFilePath)
 .then((jsonObj)=>{
-    var traficoArr = []
-    var fechas= []
-    var fechaArr1 = []
-    var fechaArr2 = []
-    var fechaArr3 = []
-    var fechaArr4 = []
-    var fechaArr5 = []
-    var numeroArr = []
-    var regionArr = []
-    // console.log(jsonObj)
+    var trafico1= []
+    var trafico2= []
+    var trafico3= []
+    var trafico4= []
+    var trafico5= []
+    var trafico6= []
+    var trafico7= []
+    var trafico8= []
+    var trafico9= [] 
+    var trafico10= []
+    var fechas = []
 
-for(i = 0; i < jsonObj.length; i++){
-    // console.log(jsonObj[i].TRAFICO)
-    // var radiobases = jsonObj[i].RADIOBASE
-    fechas.push(jsonObj[i].FECHA)
+
+    for(i = 0; i < jsonObj.length; i++){
+        // console.log(jsonObj[i].TRAFICO)
+        // var radiobases = jsonObj[i].RADIOBASE
+        fechas.push(jsonObj[i].FECHA)
+        
+        // fechaArr.push(jsonObj[i].FECHA)
+        // regionArr.push(jsonObj[i].REGION)
+        // console.log(jsonObj[i].TRAFICO)
+    }
     
-    // fechaArr.push(jsonObj[i].FECHA)
-    
-    numeroArr.push(jsonObj[i].RADIOBASE)
-    regionArr.push(jsonObj[i].REGION)
-    // console.log(jsonObj[i].TRAFICO)
-}
+    for(x=0; x < jsonObj.length; x++){
+        if(fechas[x] === "2019-08-05"  )
+        trafico1.push(jsonObj[x].TRAFICO)
+    }
+    for(a=0; a < jsonObj.length; a++){
+        if(fechas[a] === "2019-08-06"  )
+        trafico2.push(jsonObj[a].TRAFICO)
+    }
+    /*   ----10 dias----
+    for(a=0; a < jsonObj.length; a++){
+        if(fechas[a] === "2019-08-06"  )
+        trafico3.push(jsonObj[a].TRAFICO)
+    }
+    for(a=0; a < jsonObj.length; a++){
+        if(fechas[a] === "2019-08-06"  )
+        trafico4.push(jsonObj[a].TRAFICO)
+    }
+    for(a=0; a < jsonObj.length; a++){
+        if(fechas[a] === "2019-08-06"  )
+        trafico5.push(jsonObj[a].TRAFICO)
+    }
+    for(a=0; a < jsonObj.length; a++){
+        if(fechas[a] === "2019-08-06"  )
+        trafico6.push(jsonObj[a].TRAFICO)
+    }
+    for(a=0; a < jsonObj.length; a++){
+        if(fechas[a] === "2019-08-06"  )
+        trafico7.push(jsonObj[a].TRAFICO)
+    }
+    for(a=0; a < jsonObj.length; a++){
+        if(fechas[a] === "2019-08-06"  )
+        trafico8.push(jsonObj[a].TRAFICO)
+    }
+    for(a=0; a < jsonObj.length; a++){
+        if(fechas[a] === "2019-08-06"  )
+        trafico9.push(jsonObj[a].TRAFICO)
+    }
+    for(a=0; a < jsonObj.length; a++){
+        if(fechas[a] === "2019-08-06"  )
+        trafico10.push(jsonObj[a].TRAFICO)
+    }*/
 
 
-for(x=0;  x < jsonObj.length; x ++){
-    if(fechas[x] === "2019-08-05" )
-    fechaArr1.push(fechas[x])
-    // console.log(fechas[x])
-}
-for(z=0;  z < jsonObj.length; z ++){
-    if(fechas[z] === "2019-08-06" )
-    fechaArr2.push(fechas[z])
-    // console.log(fechas[z])
-}
-for(y=0;  y < jsonObj.length; y ++){
-    if(fechas[y] === "2019-08-07" )
-    fechaArr3.push(fechas[y])
 
-    // console.log(fechas[y])
-}
-for(a=0;  a < jsonObj.length; a ++){
-    if(fechas[a] === "2019-08-08" )
-    fechaArr4.push(fechas[a])
+    console.log(trafico1,'//////' , trafico2)
 
-    // console.log(fechas[a])
-}
-for(b=0;  b < jsonObj.length; b ++){
-    if(fechas[b] === "2019-08-09" )
-    fechaArr5.push(fechas[b])
+    var compresionTrafico= [trafico1, trafico2]
+    var superCompresion = [jsonObj, compresionTrafico]
 
-    // console.log(fechas[b])
-}
-
-console.log(fechaArr1, fechaArr2)
-
-var compresionFechas = [fechaArr1, fechaArr2, fechaArr3, fechaArr4, fechaArr5]
-var compresion = [traficoArr , compresionFechas , numeroArr , regionArr]
-
-// console.log(fechaArr1)
-
-// console.log(fechaArr)
-res.send(compresion)
+    res.send(superCompresion)
 
 })
-});
+})
 
 app.listen(PORT,() => {
     console.log(`Server on port ${PORT}`);
